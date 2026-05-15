@@ -175,7 +175,19 @@ class Program
 
     static void WriteCells(string id, IEnumerable<string[]> rows)
     {
-        SendJson(new { type = "write", id, cells = rows });
+        // QuickSheet's CellWrite is {"r": row, "c": col, "v": value} per cell.
+        // Flatten the row-major IEnumerable<string[]> into that shape.
+        var cells = new List<object>();
+        int r = 0;
+        foreach (var row in rows)
+        {
+            for (int c = 0; c < row.Length; c++)
+            {
+                cells.Add(new { r, c, v = row[c] ?? "" });
+            }
+            r++;
+        }
+        SendJson(new { type = "write", id, cells });
     }
 
     static void SendJson(object obj)
