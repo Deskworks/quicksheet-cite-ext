@@ -22,7 +22,7 @@ class Program
     static Program()
     {
         // Crossref asks for a User-Agent identifying the consumer.
-        Http.DefaultRequestHeaders.UserAgent.ParseAdd("quicksheet-cite-ext/1.0 (https://github.com/cemheren/quicksheet-cite-ext)");
+        Http.DefaultRequestHeaders.UserAgent.ParseAdd("quicksheet-cite-ext/1.0 (https://github.com/Deskworks/quicksheet-cite-ext)");
     }
 
     // Cache forever-ish — DOIs don't change.
